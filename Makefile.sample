@@ -1,0 +1,12 @@
+MACRO=replacement
+all: target target1 #convention to allow you to easily make everything
+target: dependencies
+	echo "command to execute"
+target1: other_dependencies
+	echo "other command to execute"
+dependencies: Makefile.sample
+other_dependencies: text
+macro:
+	echo "${MACRO} will be expanded"
+clean: #convention to allow easy cleanup of all the intermediate files, executables, etc.
+	echo "command(s) to remove all files made using this file"

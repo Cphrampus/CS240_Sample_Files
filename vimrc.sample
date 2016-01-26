@@ -1,0 +1,39 @@
+"make commenting nice
+inoremap /*<CR> /*<CR>*/<Esc>O
+inoremap /*<Space> /*<Space><Space>*/<Left><Left><Left>
+inoremap /* /**/<Left><Left>
+
+"braces, brackets, and parentheses
+"since braces and the like will auto-close, these will type over them instead of
+"writing a new one
+inoremap <expr> ) strpart(getline('.'), col('.')-1,1)==")" ? "\<Right>":")"
+inoremap <expr> } strpart(getline('.'), col('.')-1,1)=="}" ? "\<Right>":"}"
+inoremap <expr> ] strpart(getline('.'), col('.')-1,1)=="]" ? "\<Right>":"]"
+"autoclose
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap {} {}<Left>
+"prevent double typing, paren and brackets are not here because there are
+"cases, in shell scripting for instance, where two are necessary
+inoremap {{ {
+"expand out braces for writing functions
+inoremap {<CR> {<CR>}<ESC>O
+inore { {}<ESC>i
+
+"auto indent
+set cindent
+
+"line numbers
+set nu
+
+"syntax highlighting
+syntax on
+
+"press F5 to make
+map <F5> :make<CR>
+
+"press F6 to indent/format file
+map <F6> magg=G`a
+
+"allow mouse, if that's your thing
+set mouse=a
